@@ -1,3 +1,4 @@
+#adding users to the node
 class localusers{	<- defined class
 		user {'admin':
 			ensure	 	=> present,
