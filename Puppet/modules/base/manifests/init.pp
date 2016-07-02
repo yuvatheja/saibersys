@@ -1,6 +1,10 @@
-class base{
-		package{['tree','bind-utils']:		<-[] this is array
-			ensure => present,
-			enable => true,
-		}	
+class base {
+		$dnsutil =$osfamily?{
+			'RedHat' =>'bind-utils',
+			'Debian' => 'dnsutils',
+			default => 'bind-utils',
+		}
+		package{['tree',$dnsutil]:
+		ensure =>present,
+		}
 	}
