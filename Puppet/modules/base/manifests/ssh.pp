@@ -5,7 +5,7 @@ class base::ssh{
 			default:{Warning ('OS not supported by puppet module ssh')}
 			#default:{fail('OS not supported by puppet module ssh')}
 		}
-		#$ssh_name=$osfamily?{		
+		#$ssh_name=$osfamily?{	
 		#	'RedHat'	=>'sshd',
 		#	'Debian'	=>'ssh',
 		#	default		=> 'value',
@@ -20,11 +20,12 @@ class base::ssh{
 			owner	=> root,
 			group	=> root,
 			source	=> 'puppet:///modules/base/sshd_config',
-			notify	=> Service['ssh-service'],
+			notify	=> Service['ssh-service-name-two'],
 		}
 		service{'ssh-service'
 			name	=> $ssh_name,
 			ensure	=> running,
+			alias	=> 'ssh-service-name-two',
 			enable  => true,
 		}
 	}
