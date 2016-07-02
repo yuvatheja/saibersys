@@ -1,8 +1,7 @@
 class filedemo{
 		file{'/root/motd':			
 			ensure 	=> present,		
-			content => 'this is my motd file managed by content attribute', 
-			owner 	=> root,
+			source 	=> 'puppet:///modules/filedomo/motd',  root,
 			group 	=> root,
 			mode	=>'0644',
 		}
