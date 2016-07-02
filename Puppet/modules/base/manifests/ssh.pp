@@ -1,15 +1,4 @@
 class base::ssh{
-		case $osfamily{
-			'RedHat':{$ssh_name='sshd'}
-			'Debian':{$ssh_name='ssh'}
-			default:{Warning ('OS not supported by puppet module ssh')}
-			#default:{fail('OS not supported by puppet module ssh')}
-		}
-		#$ssh_name=$osfamily?{	
-		#	'RedHat'	=>'sshd',
-		#	'Debian'	=>'ssh',
-		#	default		=> 'value',
-		#}
 		package{'openssh-pkge':
 			name	=> 'openssh',
 			ensure	=> present,
@@ -23,9 +12,9 @@ class base::ssh{
 			notify	=> Service['ssh-service-name-two'],
 		}
 		service{'ssh-service'
-			name	=> $ssh_name,
+			name	=> $base::params::ssh_name,		
 			ensure	=> running,
 			alias	=> 'ssh-service-name-two',
 			enable  => true,
 		}
-	}
+	}	
